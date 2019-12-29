@@ -32,8 +32,10 @@ import java.util.Objects;
 @Slf4j
 public class PermissionCheckInterceptor extends HandlerInterceptorAdapter {
 
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        log.info("处理前。。。。。。");
         HandlerMethod handlerMethod = ((HandlerMethod) handler);
         PermissionCheck permissionCheck = findPermissionCheck(handlerMethod);
         //如果没有权限访问则跳过
@@ -42,7 +44,7 @@ public class PermissionCheckInterceptor extends HandlerInterceptorAdapter {
         }
         String resourceKey = permissionCheck.resourceKey();
         if (Objects.equals("testKey", resourceKey)) {
-            log.info("通过验证！");
+             log.info("");
             return true;
         }
         return false;
@@ -61,10 +63,12 @@ public class PermissionCheckInterceptor extends HandlerInterceptorAdapter {
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
         super.postHandle(request, response, handler, modelAndView);
+        log.info("拦截后处理。。。。。");
     }
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         super.afterCompletion(request, response, handler, ex);
+        log.info("拦截结束。。。。。。");
     }
 }

@@ -17,7 +17,7 @@ import org.xkf.cloudprovider.interceptor.PermissionCheckInterceptor;
 
 /**
  * 〈一句话功能简述〉<br>
- * 〈〉
+ *  421121197004262023
  *
  * @author 13235
  * @create 2019/9/8
@@ -31,4 +31,5 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addInterceptor(new PermissionCheckInterceptor())
                 .addPathPatterns("/api/test");
     }
+
 }
